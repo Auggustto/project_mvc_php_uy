@@ -9,14 +9,22 @@ class Router
     // Um para o metodo que vai acessar a pagina 
     // Um para armazenar o parametro que vai ser passado 
 
-    private $controler = 'Site';
+    private $controllers = 'Site';
     private $method = 'home';
     private $param = '[]';
 
 
     public function __construct()
     {
-        echo "carregando a classe router";
+        $router = $this->url();
+        // Verificando se a classe site existe
+        if(file_exists('app/controllers/' . ucfirst($router[0]) . 'php')):
+            echo 'Arquivo exixte';
+        else:
+            echo 'Arquivo não existe';
+        endif;
+        echo '<br>';
+        print_r($router);
     }
 
     // Criando uma função para pegar os dados passados pela url do navegador
