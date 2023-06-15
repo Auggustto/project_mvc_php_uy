@@ -1,8 +1,9 @@
 <?php
 
-use core\Router;
+use app\controllers\Routers;
 
 // Importando o arquivo autoload
 require_once __DIR__ . "/vendor/autoload.php";
 
-$router = new Router;
+// $router = new Routers;
+$router = new Routers;
