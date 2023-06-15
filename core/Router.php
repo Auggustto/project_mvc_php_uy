@@ -9,7 +9,7 @@ class Router
     // Um para o metodo que vai acessar a pagina 
     // Um para armazenar o parametro que vai ser passado 
 
-    private $controllers = 'Site';
+    private $controller = 'Site';
     private $method = 'home';
     private $param = '[]';
 
@@ -18,17 +18,28 @@ class Router
     {
         $router = $this->url();
         // Verificando se a classe site existe
-        if(file_exists('app/controllers/' . ucfirst($router[0]) . 'php')):
-            echo 'Arquivo exixte';
-        else:
-            echo 'Arquivo não existe';
+        if (file_exists('app/controllers/' . ucfirst($router[0]) . 'php')) :
+            $this -> controller = $router[0]; // O nome da classe está na posição zero
+            unset($router[0]); // É nescessario limpar a chave zero (indice) porque vamos trabalhar com os metodos
         endif;
-        echo '<br>';
-        print_r($router);
+
+        // Instanciando a classe 
+        $class = "\\app\\controllers" . ucfirst($this->controller);
+        $object = new $class;
+
+        // Verificando se o que a pessoa passou existe
+        if(isset($router[1]) and method_exists($class, $router[1])):
+            $this->method = $router[1];
+            unset($router[1]);
+        endif;
+
+        $this->param = $router ? array_values($router):[];
+        call_user_func_array([$object, $this->method], $this->param);
     }
 
     // Criando uma função para pegar os dados passados pela url do navegador
-    private function url(){
+    private function url()
+    {
         // Passando explode, sempre que encontrar uma barra ele quebra
         // 'router' é o nome da vareavel que foi definida no htaccess
         $parse_url = explode("/", filter_input(INPUT_GET, 'router', FILTER_SANITIZE_URL));
