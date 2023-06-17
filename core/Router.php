@@ -1,7 +1,6 @@
 <?php
 
 namespace core;
-namespace app\controllers;
 
 class Router
 {
@@ -18,24 +17,55 @@ class Router
     public function __construct()
     {
         $router = $this->url();
+
+        print_r($router);
+        echo '<br>';
+
+        // echo "Carregando a classe router";
+        $router = $this->url();
+
         // Verificando se a classe site existe
-        if (file_exists('app/controllers/' . ucfirst($router[0]) . 'php')) :
-            $this -> controller = $router[0]; // O nome da classe está na posição zero
+
+        if (is_file('./app/controllers/' . ucfirst($router[0]) . '.php')) :
+            $this->controller = $router[0]; // O nome da classe está na posição zero
             unset($router[0]); // É nescessario limpar a chave zero (indice) porque vamos trabalhar com os metodos
         endif;
 
         // Instanciando a classe 
-        $class = "\\app\\controllers" . ucfirst($this->controller);
+        $class = "\\app\\controllers\\" . ucfirst($this->controller);
         $object = new $class;
 
-        // Verificando se o que a pessoa passou existe
-        if(isset($router[1]) and method_exists($class, $router[1])):
+        // Verificando se o metodo que a pessoa passou existe
+        if (isset($router[1]) and method_exists($class, $router[1])) :
             $this->method = $router[1];
             unset($router[1]);
         endif;
 
-        $this->param = $router ? array_values($router):[];
+        $this->param = $router ? array_values($router) : [];
         call_user_func_array([$object, $this->method], $this->param);
+
+
+        // if (file_exists('./app/controllers/' . ucfirst($router[0]) . 'php')) :
+        //     echo "arquivo existe";
+        // else:
+        //     echo "Arquivo não existe";
+
+        //$this -> controller = $router[0]; // O nome da classe está na posição zero
+        //unset($router[0]); // É nescessario limpar a chave zero (indice) porque vamos trabalhar com os metodos
+        // endif;
+
+        // // Instanciando a classe 
+        // $class = "\\app\\controllers" . ucfirst($this->controller);
+        // $object = new $class;
+
+        // // Verificando se o que a pessoa passou existe
+        // if(isset($router[1]) and method_exists($class, $router[1])):
+        //     $this->method = $router[1];
+        //     unset($router[1]);
+        // endif;
+
+        // $this->param = $router ? array_values($router):[];
+        // call_user_func_array([$object, $this->method], $this->param);
     }
 
     // Criando uma função para pegar os dados passados pela url do navegador
