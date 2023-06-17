@@ -6,6 +6,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Importando css direto do cdn-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- <link rel="stylesheet" href="./materialize/css/materialize.min.css"> -->
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,6 +31,7 @@
 
   <!--Importando o arquivo js direto do cdn-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- <script src="./materialize/js/materialize.min.js"></script> -->
 </body>
 
 </html>
