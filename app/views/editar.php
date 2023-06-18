@@ -4,9 +4,12 @@
         <!-- Mostrando o valor da vareavel foto que está no controller -->
     </div>
     <div class="col s12">
-        <form action="?router=Site/editar/" method="Post">
+        <form action="?router=Site/alterar/" method="Post">
             <!-- Foreach vai remover os valores duplicados -->
             <?php foreach ($editarForm as $registro) : ?>
+
+                <!-- Pegando o valor de ID de forma oculta -->
+                <input type="hidden" name="id" value="<?php echo $registro["id"];?>">
 
                 <div class="input-field col s12 m6">
 
@@ -17,7 +20,7 @@
                 </div>
 
                 <div class="input-field col s12 m6">
-                <input placeholder="Digite seu nome" id="nome" name="nome" type="text" class="validate" value="<?php
+                <input placeholder="Digite seu nome" id="email" name="email" type="text" class="validate" value="<?php
                     echo $registro['email']?>" required>
                     <label for="email">Digite seu e-mail</label>
 

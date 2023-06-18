@@ -38,4 +38,22 @@ class Site extends Crud
         $editarForm = $this->editForm();
         require_once __DIR__ . '/../views/editar.php';
     }
+    
+    public function  alterar()
+    {   
+        // Executando a query do update  
+        $alterar = $this->update();
+
+        // Redirecionando 
+        header('Location:?router=Site/consulta/');
+    }
+
+    public function  confirmaDelete()
+    {   
+        // Executando a query do update  
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // Redirecionando 
+        header('Location:?router=Site/consulta/');
+    }
 }
