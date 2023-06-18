@@ -52,7 +52,13 @@ class Site extends Crud
     {   
         // Executando a query do update  
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+       require_once __DIR__ . '/../views/confirmaDelete.php';
+    }
 
+    public function  deletar()
+    {   
+        // Deletar
+        $delete = $this->delete();
         // Redirecionando 
         header('Location:?router=Site/consulta/');
     }

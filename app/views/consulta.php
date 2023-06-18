@@ -21,7 +21,7 @@
                     <td>
                         <!-- Vamos utilizar o base64_encode para criptografar o ID -->
                         <a href="?router=Site/editar/&id=<?php echo base64_encode($registro['id'])?>">Editar</a> |
-                        <a href="?router=Site/deletar/&id=<?php echo base64_encode($registro['id'])?>" class="red-text">Deletar</a> 
+                        <a href="?router=Site/confirmaDelete/&id=<?php echo base64_encode($registro['id'])?>" class="red-text">Deletar</a> 
                     </td>
                 </tr>
             <?php endforeach; ?>
