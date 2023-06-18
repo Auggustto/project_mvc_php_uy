@@ -32,4 +32,10 @@ class Site extends Crud
         $consulta = $this->read();
         require_once __DIR__ . '/../views/consulta.php';
     }
+
+    public function  editar()
+    {   
+        $editarForm = $this->editForm();
+        require_once __DIR__ . '/../views/editar.php';
+    }
 }

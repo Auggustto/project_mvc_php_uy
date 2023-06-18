@@ -24,20 +24,11 @@ class Crud extends Connection
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt;
+        
         $nome = "";
         $email = "";
 
         }
-        
-
-        // Inserindo os dados da variável no banco de dados
-        // $sql = "INSERT INTO tb_person VALUES (default, :nome, :email)";
-        // $stmt = $conn->prepare($sql);
-        // $stmt->bindParam(':nome', $nome);
-        // $stmt->bindParam(':email', $email);
-        // $stmt->execute();
-
-        // return $stmt;
     }
 
     public function read()
@@ -59,5 +50,20 @@ class Crud extends Connection
     public function delete()
     {
 
+    }
+
+    public function editForm()
+    {
+        // Pegando a vareavel ID que está sendo enviada via URL
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $conn = $this->connect();
+        $sql = "SELECT * FROM tb_person WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll();
+        return $result;
     }
 }
