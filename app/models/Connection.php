@@ -20,7 +20,7 @@ abstract class Connection
 
             // Configurando o retorno do banco de dados 
             $conn->exec("set names utf8");
-            echo 'conexão realizada com sucesso!';
+            // echo 'conexão realizada com sucesso!';
             return $conn;
         } catch(\PDOException $erro ){
             echo 'eero de conexão',$erro->getMessage();
