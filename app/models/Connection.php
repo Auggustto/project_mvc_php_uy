@@ -6,6 +6,7 @@ namespace app\models;
 abstract class Connection
 {
     // 
+    // private $dbname = 'mysql:host=localhost;dbname=projetomvc';
     private $dbname = 'mysql:host=localhost;dbname=projetomvc';
     private $user = 'root';
     private $pass = '';
@@ -19,9 +20,10 @@ abstract class Connection
 
             // Configurando o retorno do banco de dados 
             $conn->exec("set names utf8");
+            echo 'conexão realizada com sucesso!';
             return $conn;
         } catch(\PDOException $erro ){
-            echo $erro->getMessage();
+            echo 'eero de conexão',$erro->getMessage();
         };
     }
 }
