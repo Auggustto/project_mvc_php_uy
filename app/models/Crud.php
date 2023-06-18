@@ -10,25 +10,40 @@ class Crud extends Connection
     {
         // Pegando o método connect
         $conn = $this->connect();
-        // return $stmt;
 
+        // Pegando os valores do forms views/cadastro
         $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 
+        if($nome and $email != null){
+            
         // Inserindo os dados da variável no banco de dados
         $sql = "INSERT INTO tb_person VALUES (default, :nome, :email)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-
         return $stmt;
+        $nome = "";
+        $email = "";
+
+        }
+        
+
+        // Inserindo os dados da variável no banco de dados
+        // $sql = "INSERT INTO tb_person VALUES (default, :nome, :email)";
+        // $stmt = $conn->prepare($sql);
+        // $stmt->bindParam(':nome', $nome);
+        // $stmt->bindParam(':email', $email);
+        // $stmt->execute();
+
+        // return $stmt;
     }
 
     public function read()
     {
         $conn = $this->connect();
-        $sql ='SELECT * tb_person ORDER BY nome';
+        $sql = 'SELECT * FROM tb_person ORDER BY nome';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
