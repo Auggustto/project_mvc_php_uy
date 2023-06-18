@@ -19,8 +19,9 @@
                     
                     <!-- Botão de editar, vamos pegar o id que desejamos editrar os dados -->
                     <td>
-                        <a href="?router=Site/editar/&id=<?php echo $registro['id']?>">Editar</a> |
-                        <a href="?router=Site/deletar/&id=<?php echo $registro['id']?>">Deletar</a> 
+                        <!-- Vamos utilizar o base64_encode para criptografar o ID -->
+                        <a href="?router=Site/editar/&id=<?php echo base64_encode($registro['id'])?>">Editar</a> |
+                        <a href="?router=Site/deletar/&id=<?php echo base64_encode($registro['id'])?>" class="red-text">Deletar</a> 
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -54,10 +54,11 @@ class Crud extends Connection
 
     public function editForm()
     {
-        // Pegando a vareavel ID que está sendo enviada via URL
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS);
+        // Pegando a vareavel ID que está sendo enviada via URL e utilizando o base64_decode para tirar a criptografia
+        $id = base64_decode(filter_input(INPUT_GET, 'id', FILTER_SANITIZE_SPECIAL_CHARS));
 
         $conn = $this->connect();
+
         $sql = "SELECT * FROM tb_person WHERE id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(":id", $id);
