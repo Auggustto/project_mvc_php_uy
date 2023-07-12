@@ -16,8 +16,6 @@ class Router
 
     public function __construct()
     {
-        $router = $this->url();
-
         // echo "Carregando a classe router";
         $router = $this->url();
 
